@@ -4,6 +4,7 @@ using ll = long long;
 
 #ifdef ONLINE_JUDGE
 #define debug(...) 42
+#define debug_array(x,y) 42
 #else
 #include "DEBUG_TEMPLATE.h"
 #endif
