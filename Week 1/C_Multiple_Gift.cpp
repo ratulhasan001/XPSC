@@ -14,17 +14,12 @@ int32_t main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int T; 
-    cin >> T;
-    for(int testCase=1; testCase <= T; testCase++) {
-    
-        int n, ans = 0;
-        cin >> n;
-        for(int i = 1; i <= n; i++) {
-            int x; cin >> x;
-            ans = max(ans, x - i);
-        }
-        cout << ans << '\n';
+    ll n, k, cnt = 0;
+    cin >> n >> k;
+    for(ll i = n; i <= k; i *= 2) {
+        cnt++;
     }
+    cout << cnt << '\n';
+    
     return 0;
 }
