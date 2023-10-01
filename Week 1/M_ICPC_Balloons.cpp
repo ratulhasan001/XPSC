@@ -16,9 +16,20 @@ int32_t main() {
 
     int T; 
     cin >> T;
-    for(int testCase=1; testCase <= T; testCase++) {
+    for(int testCase = 1; testCase <= T; testCase++) {
     
-        
+        int n, point = 0;
+        cin >> n;
+        string s;
+        cin >> s;
+        map<char,int>mp;
+        for(int i = 0; i < n; i++) {
+            if(mp[s[i]] == 0) point +=2;
+            else point += 1;
+            mp[s[i]]++;
+        }
+        cout << point << '\n';
+
         
     }
     return 0;
