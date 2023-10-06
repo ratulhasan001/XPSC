@@ -17,9 +17,30 @@ int32_t main() {
     int T; 
     cin >> T;
     for(int testCase=1; testCase <= T; testCase++) {
-    
-        
-        // cout << "Case " << testCase << ": " << ;
+        int n;
+        cin >> n;
+        int a[n];
+        for(int i = 0; i < n; i++) cin >> a[i];
+        for(int i = 0; i < n; i++) {
+            int k;
+            string s;
+            cin >> k >> s;
+            for(int j = 0; j < k; j++) {
+                if(s[j] == 'U') {
+                    if(a[i] == 0) {
+                        a[i] = 9;
+                    }
+                    else a[i]--;
+                }
+                if(s[j] == 'D') {
+                    if(a[i] == 9) a[i] = 0;
+                    else a[i]++;
+                }
+            }
+        }
+        for(int i = 0; i < n; i++) cout << a[i] << " ";
+        cout << '\n';
     }
+
     return 0;
 }
