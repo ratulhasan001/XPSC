@@ -45,4 +45,3 @@ int32_t main() {
     cout << flag << '\n';
     return 0;
 }
-
