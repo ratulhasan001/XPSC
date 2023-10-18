@@ -18,8 +18,25 @@ int32_t main() {
     cin >> T;
     for(int testCase=1; testCase <= T; testCase++) {
     
-        
-        // cout << "Case " << testCase << ": " << ;
-    }
+        int n;
+        cin >> n;
+        vector<int> a(n);
+        map<int, int> mp;
+        set<int> s;
+        for (int &i : a) {
+            cin >> i;
+            mp[i]++;
+            s.insert(i);
+            s.insert(i + 1);
+        }
+        int last = 0;
+        int ans = 0;
+        for (auto x: s) {
+            int c = mp[x];
+            ans += max(0, c - last);
+            last = c;
+        }
+        cout << ans << '\n';
+        }
     return 0;
 }
