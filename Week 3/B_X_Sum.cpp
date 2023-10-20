@@ -19,78 +19,47 @@ int32_t main() {
     cin >> T;
     for(int testCase=1; testCase <= T; testCase++) {
     
-        int r, c;
-        cin >> r >> c;
-        vector<vector<int>> matrix(r, vector<int>(c));
-        for(int i = 0; i < r; i++) {
-            for(int j = 0; j < c; j++) {
-                cin >> matrix[i][j];
-            }
-        }
-        int rows = matrix.size();
-        int cols = matrix[0].size();
-
-        vector<vector<int>> mainDiagonals;
-        vector<vector<int>> oppositeDiagonals;
-
-        for (int d = 0; d < rows + cols - 1; d++) {
-            vector<int> diagonal;
-            int row, col;
-
-            if (d < rows) {
-                row = d;
-                col = 0;
-            } else {
-                row = rows - 1;
-                col = d - rows + 1;
-            }
-
-            while (row >= 0 && col < cols) {
-                diagonal.push_back(matrix[row][col]);
-                row--;
-                col++;
-            }
-
-            mainDiagonals.push_back(diagonal);
-        }
-
-        for (int d = 0; d < rows + cols - 1; d++) {
-            vector<int> diagonal;
-            int row, col;
-
-            if (d < rows) {
-                row = d;
-                col = cols - 1;
-            } else {
-                row = rows - 1;
-                col = cols - (d - rows) - 2;
-            }
-
-            while (row >= 0 && col >= 0) {
-                diagonal.push_back(matrix[row][col]);
-                row--;
-                col--;
-            }
-
-            oppositeDiagonals.push_back(diagonal);
-        }
-        vector<ll> ans;
-
-    for (int i = 0; i < mainDiagonals.size(); i++) {
-        for (int j = 0; j < oppositeDiagonals.size(); j++) {
-            int sum = 0;
-            for (int element : mainDiagonals[i]) {
-                sum += element;
-            }
-            for (int element : oppositeDiagonals[j]) {
-                sum += element;
-            }
-            ans.push_back(sum);
-        }
-    }
-        ranges :: sort(ans);
-        cout << ans[ans.size() - 1] << '\n';
-        debug(ans);
+        int n, m;
+	    cin >> n >> m;
+	    int a[n][m];
+	    for(int i = 0; i < n; i++) {
+	    	for(int j = 0; j < m; j++) {
+	    		cin >> a[i][j];
+	    	}
+	    }
+	    int mx = 0;
+	    for(int i = 0; i < n; i++) {
+	    	for(int j = 0; j < m; j++) {
+	    		int now = 0;
+	    		int ci = i, cj = j;
+	    		while(ci >= 0 && ci < n && cj >= 0 && cj < m) {
+	    			now+=a[ci][cj];
+	    			ci--;
+	    			cj--;
+	    		}
+	    		ci = i, cj = j;
+	    		while(ci >= 0 && ci < n && cj >= 0 && cj < m) {
+	    			now+=a[ci][cj];
+	    			ci++;
+	    			cj--;
+	    		}
+	    		ci = i, cj = j;
+	    		while(ci >= 0 && ci < n && cj >= 0 && cj < m) {
+	    			now+=a[ci][cj];
+	    			ci--;
+	    			cj++;
+	    		}
+	    		ci = i, cj = j;
+	    		while(ci >= 0 && ci < n && cj >= 0 && cj < m) {
+	    			now+=a[ci][cj];
+	    			ci++;
+	    			cj++;
+	    		}
+	    		now-=a[i][j]*3;
+	    		mx = max(mx, now);
+	    	}
+	    }
+	    cout << mx << endl;
     }
     return 0;
 }
