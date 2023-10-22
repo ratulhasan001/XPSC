@@ -18,15 +18,8 @@ int32_t main() {
     cin >> T;
     for(int testCase=1; testCase <= T; testCase++) {
     
-        int n;
-        cin >> n;
-        if(n == 1 or n == 3) {
-            cout << "-1" << '\n';
-            continue;
-        }
-        cout << n << " " << n - 1  << " ";
-        for(int i = 1; i < n - 1; i++) cout << i << " ";
-        cout << '\n';
+        
+        // cout << "Case " << testCase << ": " << ;
     }
     return 0;
 }
