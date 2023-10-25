@@ -20,20 +20,18 @@ int32_t main() {
     
         string x;
         cin >> x;
-        int n = x.size(), k = 0, cnt = 0;
-        map<char,int>mp;
+        set<char>s;
+        int n = x.size(), ans = 0;
         for(int i = 0; i < n; i++) {
-            if(mp[x[i]] == 0 and k == 3) k = 0,cnt++;
-            else if(mp[x[i]]) {
-                if(i == n - 1) cnt++;
-                continue;
+            s.insert(x[i]);
+            if(s.size() > 3) {
+                s.clear();
+                ans++;
+                s.insert(x[i]);
             }
-            else {
-                mp[x[i]]++, k++;
-            }
-            if(i == n - 1 and k > 0) cnt++;
         }
-        cout << cnt << '\n';
+        if(s.size() > 0) ans++;
+        cout << ans << '\n';
     }
     return 0;
 }
