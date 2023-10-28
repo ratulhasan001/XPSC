@@ -1,32 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
-
-#ifdef ONLINE_JUDGE
-#define debug(...) 42
-#define debug_array(x,y) 42
-#else
-#include "deBUG.h"
-#endif
 
 int32_t main() {
 
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int T; 
-    cin >> T;
-    for(int testCase=1; testCase <= T; testCase++) {
-    
-        int n, k;
-        cin >> n >> k;
+    int n, k;
+    while(cin >> n >> k) {
         vector<int>v(n);
-        ll sum = 0;
-        for(int &i : v) {
-            cin >> i ;
-            sum += i;
+        for(int &i : v) cin >> i ;
+
+        int l = 0, r = INT_MAX, m, ans;
+
+        while(l < r) {
+            bool ok = true;
+            int cnt = 0, sum = 0;
+            m  = (r - l) / 2 + l;
+            for(auto x : v) {
+                if(x > m) {
+                    l = m + 1;
+                    ok = false;
+                    break;
+                }
+                sum += x;
+                if(sum == m) {
+                    sum = 0;
+                    cnt++;
+                }
+                else if(sum > m) {
+                    cnt++;
+                    sum = x;
+                }
+            }
+            if(!ok) continue;
+            if(sum != 0) cnt++;
+            if(cnt > k) l = m + 1;
+            else r = m;
+            ans = m;
+            if(l == r) ans = l;
+
         }
-        // cout << "Case " << testCase << ": " << ;
+        cout << ans << '\n';
     }
     return 0;
 }
