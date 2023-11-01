@@ -22,11 +22,25 @@ int32_t main() {
         cin >> n;
         vector<ll>v(n);
         for(auto &x : v) cin >> x;
-        ranges :: sort(v);
-        ll l = 0, r = INT_MAX, m, ans;
+        sort(v.begin(), v.end());
+        ll l = 0, r = INT_MAX, m, ans, k, f;
         while(l <= r) {
-            
+            m = (r - l) / 2 + l;
+            k = 0;
+            ans = 0;
+            for(int i = 0; i < n; i++) {
+                if(abs(v[k] - v[i]) > 2 * m) {
+                    k = i;
+                    ans++;
+                }
+            }
+            if(ans >= 3) l = m + 1;
+            else {
+                f = m;
+                r = m - 1;
+            }
         }
+        cout << f << '\n';
     }
     return 0;
 }
