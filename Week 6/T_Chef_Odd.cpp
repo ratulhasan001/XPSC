@@ -18,12 +18,18 @@ int32_t main() {
     cin >> T;
     for(int testCase = 1; testCase <= T; testCase++) {
     
-        int n;
-        string s;
-        cin >> n >> s;
-        int z = 0, o = 0;
-        for(char c : s) (c == '1' ? o++ : z++);
-        cout << (min(z, o) % 2 == 0? "Ramos" : "Zlatan") << '\n';
+        ll n, k;
+        cin >> n >> k;
+        ll x;
+        if(n % 2 == 0) x = n / 2;
+        else x = n / 2 + 1;
+        if(n < k * 2) {
+            cout << "NO" << '\n';
+        }
+        else {
+            ll ans = x - k;
+            cout << (ans % 2 == 0 ? "YES" : "NO") << '\n';
+        }
     }
     return 0;
 }

@@ -9,6 +9,8 @@ using ll = long long;
 #include "deBUG.h"
 #endif
 
+const int MOD = 1e9 + 7;
+
 int32_t main() {
 
     ios_base::sync_with_stdio(false);
@@ -18,12 +20,17 @@ int32_t main() {
     cin >> T;
     for(int testCase = 1; testCase <= T; testCase++) {
     
-        int n;
-        string s;
-        cin >> n >> s;
-        int z = 0, o = 0;
-        for(char c : s) (c == '1' ? o++ : z++);
-        cout << (min(z, o) % 2 == 0? "Ramos" : "Zlatan") << '\n';
+        int n, k;
+        ll ans = 1;
+        cin >> n >> k;
+        for(int i = 0; i < n; i++) {
+            if(k > 0) {
+                ans = (k * ans) % MOD;
+                k--;
+            }
+            else break;
+        }
+        cout << ans << '\n';
     }
     return 0;
 }
