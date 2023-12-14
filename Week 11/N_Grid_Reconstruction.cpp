@@ -10,26 +10,25 @@ using ll = long long;
 #endif
 
 void attack() {
-    int n;
+    ll n, x, y;
     cin >> n;
-    vector< int > v(n), x(n), diff(n);
-    for(int &i : v) cin >> i;
-    for(int &i : x) cin >> i;
-    
-    for(int i = 0; i < n; i++){
-        diff[i] = x[i] - v[i];
-    }
-    sort(diff.begin(), diff.end());
-    int ans = 0, i = 0, j = n - 1;
-    while(i < j) {
-        if(diff[i] + diff[j] >= 0){
-            ans++;
-            i++;
-            j--;
+    vector < ll > v;
+    x = 2 * n, y = 2;
+    for (int i = 1; i <= n; i++) {
+        if (i % 2 == 1) {
+            v.push_back(x);
+            x -= 2;
         }
-        else i++;
-    } 
-    cout << ans << '\n';
+
+        else {
+            v.push_back(y);
+            y += 2;
+        }
+    }
+    for (auto x: v) cout << x << " ";
+    cout << '\n';
+    for (int i = 1; i < n; i++) cout << v[i] - 1 << " ";
+    cout << 2 * n - 1 << '\n';
 }
 
 int32_t main() {

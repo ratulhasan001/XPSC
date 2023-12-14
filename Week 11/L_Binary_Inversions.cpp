@@ -9,27 +9,38 @@ using ll = long long;
 #include "deBUG.h"
 #endif
 
-void check(int x){
-	m = 0;
-	for (int i = 1; i <= n; ++ i)
-		if (a[i] != x)
-			b[++ m] = a[i];
-	for (int i = 1; i <= m; ++ i)
-		if (b[i] != b[m + 1 - i])
-			return;
-	ans = true;
+ll cnt(vector< int >& a) {
+    ll zero = 0, ans = 0;
+    for(int i = (int)a.size() - 1; i >= 0; i--) {
+        if(a[i] == 0) zero++;
+        else ans += zero;
+    }
+    return ans;
 }
 
-
 void attack() {
-    int n, one = 0, zero = 0 ;
+    int n; 
     cin >> n;
-    int a[n];
+    vector< int > a(n);
+    for(int &i : a) cin >> i;
+    ll ans = cnt(a);
     for(int i = 0; i < n; i++) {
-        cin >> a[i];
-        one += (a[i] == 0);
-        zero += (a[i] == 1);
+        if(a[i] == 0) {
+            a[i] = 1;
+            ans = max(ans, cnt(a));
+            a[i] = 0;
+            break;
+        }
     }
+    for(int i = n - 1; i >= 0; --i) {
+        if(a[i] == 1) {
+            a[i] = 0;
+            ans = max(ans, cnt(a));
+            a[i] = 1;
+            break;
+        }
+    }
+    cout << ans << "\n";
     
     
 }
