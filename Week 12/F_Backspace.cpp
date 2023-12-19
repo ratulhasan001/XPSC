@@ -17,7 +17,21 @@ void attack() {
         cout << "NO" << '\n';
         return;
     }
-    cout << "bara\n";
+    while(true) {
+        if(t.empty()) {
+            cout << "YES" << '\n';
+            return;
+        }
+        if(s.empty()) {
+            cout << "NO" << '\n';
+            return;
+        }
+        if(s.back() == t.back()) s.pop_back(), t.pop_back();
+        else {
+            s.pop_back();
+            if(s.size()) s.pop_back();
+        }
+    }
 }
 
 int32_t main() {
